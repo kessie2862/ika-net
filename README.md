@@ -22,9 +22,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 IKA-NET <a name="about-project"></a>
-
-> **[IKA-NET]** is a simple Todo App to organize your tasks and set priorities
+> This is a simple Todo App to organize your tasks and set priorities
 
 ## 🛠 Built With <a name="built-with"></a>
 

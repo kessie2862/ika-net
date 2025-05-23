@@ -1,0 +1,12 @@
+{
+  "todos": [
+    {
+      "id": "552e",
+      "text": "Going to the hospital",
+      "dueDate": "2025-05-23",
+      "priority": "high",
+      "completed": false,
+      "order": 0
+    }
+  ]
+}

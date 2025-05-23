@@ -82,21 +82,14 @@ pnpm install or npm install
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-#### Set Up the Mock Backend: The application uses JSON Server as a mock backend. Create a db.json file in the root directory with the following structure:
-
-``` sh
-  {
-    "todos": []
-  }
-```
-#### Run the Mock Backend: Start the JSON Server to simulate the backend API:
+#### The application uses JSON Server as a mock backend. Run the Mock Backend by starting the JSON Server to simulate the backend API:
 
 ``` sh
 npm run server or pnpm run server
 ```
 - This will start the server at http://localhost:3001.
 
-#### Run the Development Server: Start the Next.js development server:
+#### Run the Development Server: 
 ``` sh
 npm run dev or pnpm run dev
 ```

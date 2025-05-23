@@ -146,6 +146,7 @@ pnpm test or npm run test
 
 - [ ] **[Search functionality]**
 - [ ] **[User authentication]**
+- [ ] **[Test API calls with mock responses]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

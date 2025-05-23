@@ -10,7 +10,6 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -44,12 +43,6 @@
 - **Drag-and-Drop Reordering: Reorder todos via drag-and-drop with server-synced order updates.**
 - **Todo Filtering: Filter todos by "all," "active," or "completed" status.**
 - **Modal Editing: View and edit todo details (text, due date, priority) in a modal with form validation.**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- [Live link](coming soon)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

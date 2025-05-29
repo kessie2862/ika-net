@@ -14,6 +14,7 @@ export const createTodo = async (data: {
   text: string;
   dueDate?: string;
   priority?: 'low' | 'medium' | 'high';
+  completed?: boolean;
 }): Promise<Todo> => {
   const response = await api.post('/todos', { ...data, completed: false });
   return response.data;

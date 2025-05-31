@@ -1,35 +1,29 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import { Todo } from '../types/types';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
 import TodoModal from './TodoModal';
 import { Toaster } from 'react-hot-toast';
-import {
-  fetchTodos,
-  handleAddTodo,
-  handleToggle,
-  handleDelete,
-  handleUpdate,
-  handleOpenModal,
-  onDragEnd,
-} from './todoHandlers';
-
-type FilterType = 'all' | 'active' | 'completed';
+import { useTodos } from '@/hooks/useTodos';
+import { FilterType, Todo } from '../types/types';
 
 export default function TodoApp() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    todos,
+    loading,
+    error,
+    addTodo,
+    toggleTodo,
+    deleteTodo,
+    updateTodo,
+    onDragEnd,
+  } = useTodos();
+
   const [filter, setFilter] = useState<FilterType>('all');
   const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    fetchTodos(setTodos, setError, setLoading);
-  }, []);
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'active') return !todo.completed;
@@ -56,9 +50,7 @@ export default function TodoApp() {
   return (
     <div className="container mx-auto max-w-2xl p-6 bg-gray-100 rounded-lg shadow-sm">
       <h1 className="mb-6 text-3xl font-bold text-gray-800">Todo App</h1>
-      <TodoForm
-        onAddTodo={(newTodo) => handleAddTodo(newTodo, todos, setTodos)}
-      />
+      <TodoForm onAddTodo={addTodo} />
       <div className="mb-6 flex gap-2">
         <button
           onClick={() => setFilter('all')}
@@ -82,9 +74,7 @@ export default function TodoApp() {
       {filteredTodos.length === 0 ? (
         <p className="text-gray-500 text-center">No todos found.</p>
       ) : filter === 'all' ? (
-        <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, todos, setTodos)}
-        >
+        <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="todos">
             {(provided) => (
               <ul {...provided.droppableProps} ref={provided.innerRef}>
@@ -103,20 +93,13 @@ export default function TodoApp() {
                       >
                         <TodoItem
                           todo={todo}
-                          onToggle={() =>
-                            handleToggle(todo.id, todos, setTodos)
-                          }
-                          onDelete={() => handleDelete(todo.id, setTodos)}
-                          onUpdate={(id, updates) =>
-                            handleUpdate(id, updates, setTodos, setError)
-                          }
-                          onOpenModal={(todo) =>
-                            handleOpenModal(
-                              todo,
-                              setSelectedTodo,
-                              setIsModalOpen
-                            )
-                          }
+                          onToggle={() => toggleTodo(todo.id)}
+                          onDelete={() => deleteTodo(todo.id)}
+                          onUpdate={updateTodo}
+                          onOpenModal={(todo) => {
+                            setSelectedTodo(todo);
+                            setIsModalOpen(true);
+                          }}
                         />
                       </li>
                     )}
@@ -133,14 +116,13 @@ export default function TodoApp() {
             <li key={todo.id} className="mb-4">
               <TodoItem
                 todo={todo}
-                onToggle={() => handleToggle(todo.id, todos, setTodos)}
-                onDelete={() => handleDelete(todo.id, setTodos)}
-                onUpdate={(id, updates) =>
-                  handleUpdate(id, updates, setTodos, setError)
-                }
-                onOpenModal={(todo) =>
-                  handleOpenModal(todo, setSelectedTodo, setIsModalOpen)
-                }
+                onToggle={() => toggleTodo(todo.id)}
+                onDelete={() => deleteTodo(todo.id)}
+                onUpdate={updateTodo}
+                onOpenModal={(todo) => {
+                  setSelectedTodo(todo);
+                  setIsModalOpen(true);
+                }}
               />
             </li>
           ))}
@@ -150,9 +132,7 @@ export default function TodoApp() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         todo={selectedTodo}
-        onUpdate={(id, updates) =>
-          handleUpdate(id, updates, setTodos, setError)
-        }
+        onUpdate={updateTodo}
       />
       <Toaster position="top-right" />
     </div>

@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { createTodo } from '../services/todoService';
+import { useCreateTodo } from '@/hooks/useCreateTodo';
 import { Todo } from '../types/types';
 
 const todoSchema = Yup.object().shape({
@@ -21,6 +21,8 @@ interface TodoFormProps {
 }
 
 export default function TodoForm({ onAddTodo }: TodoFormProps) {
+  const { createTodo, isCreating } = useCreateTodo();
+
   return (
     <Formik
       initialValues={{ text: '', dueDate: '', priority: '' }}
@@ -104,7 +106,7 @@ export default function TodoForm({ onAddTodo }: TodoFormProps) {
           </div>
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isCreating}
             className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 disabled:bg-blue-300 transition-colors"
           >
             Add Todo

@@ -2,11 +2,27 @@
   "todos": [
     {
       "id": "552e",
-      "text": "Going to the hospital",
+      "text": "Taking my wife to the hospital",
       "dueDate": "2025-05-23",
       "priority": "high",
       "completed": false,
-      "order": 0
+      "order": 1
+    },
+    {
+      "id": "8e98",
+      "text": "Completing todo project.",
+      "dueDate": "2025-05-24",
+      "priority": "medium",
+      "completed": true,
+      "order": 2
+    },
+    {
+      "id": "3bf4",
+      "text": "Watch the Latest Sermon",
+      "completed": false,
+      "order": 3,
+      "dueDate": "2025-05-31",
+      "priority": "high"
     }
   ]
 }

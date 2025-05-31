@@ -6,3 +6,5 @@ export interface Todo {
   priority?: 'low' | 'medium' | 'high';
   order: number;
 }
+
+export type FilterType = 'all' | 'active' | 'completed';
